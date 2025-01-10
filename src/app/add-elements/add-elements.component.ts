@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-add-elements',
@@ -8,12 +10,17 @@ import { Router } from '@angular/router';
   standalone: false
 })
 export class AddElementsComponent implements OnInit {
-
+  @ViewChild('Form') addTelefonForm!: NgForm;
   constructor(private router: Router) { }
 
-  ngOnInit() {
+ngOnInit() {
   }
 onBack(){
   this.router.navigate(['/']);
+}
+// aici puneam argumentul daca nu foloseam viewchild
+onSubmit(){
+  console.log('forms ok');
+  console.log(this.addTelefonForm);
 }
 }

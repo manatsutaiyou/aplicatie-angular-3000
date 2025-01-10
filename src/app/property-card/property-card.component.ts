@@ -1,3 +1,5 @@
+// property (fiecare telefon in parte) tip any
+
 import { Component, Input, input } from '@angular/core';
 
 @Component({

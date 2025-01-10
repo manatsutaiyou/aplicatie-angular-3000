@@ -46,3 +46,10 @@
   transition: all 0.3s ease-in-out;
   opacity: 1;
 }
+.badge {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 0.85rem;
+  padding: 5px 10px;
+  border-radius: 5px;
+}

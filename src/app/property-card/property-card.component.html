@@ -1,7 +1,8 @@
-
+<!-- Cardurile pentru fiecare telefon cu mentiunea de inchiriat unde este cazul -->
     <div class="card p-2">
         <div class="image-wrapper">
-        <img class="propImg" src ="assets/images/phone_default.png" alt="Example Image">
+        <img *ngIf= "property.image" class="propImg" src ="assets/images/{{property.image}}.png" alt="Example Image">
+        <img *ngIf= "!property.image" class="propImg" src ="assets/images/phone_default.png" alt="Example Image">
         <ul class="list-inline text-center member-icons animate">
             <li class="list-inline-item">
                 <button class="btn btn-primary" routerLink="/telefoane-detalii/{{property.ID}}"><i class="fa-solid fa-pen-to-square"></i></button>
@@ -15,5 +16,7 @@
             <h1>{{property.name}}</h1>
             <h1>{{property.type}}</h1>
             <h2>{{property.price}}</h2>
-        
+            <span 
+            *ngIf="property.SellRent === 2" 
+            class="badge bg-warning text-danger">De inchiriat!</span>
     </div></div>

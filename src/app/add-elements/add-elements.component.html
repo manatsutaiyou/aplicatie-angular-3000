@@ -1,4 +1,42 @@
-<p>
-  add-elements works!
+<!-- Formular template driven pentru a adauga in lista telefoane -->
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          Adauga anunt telefon!
+        </div>
+      <div class="card-body">
+        <form (ngSubmit)="onSubmit()" #Form="ngForm">
+        <div class="form-group col-12">
+          <!-- numele este obligatoriu si mai amre de 3 caractere- 2 erori care se afiseaza in functie de situatie -->
+          <label for="name">Nume</label>
+          <input type="text" class="form-control" #telName="ngModel" ngModel name="name"  required minlength="3">
+          <span *ngIf="!telName.valid && telName.touched" class="error-block">
+           <span *ngIf="telName?.errors?.['required']">Numele telefonului este obligatoriu!</span> 
+           <span *ngIf="telName?.errors?.['minlength']">Numele trebuie sa aiba minimum 3 caractere!</span> 
+          </span>
+        </div>
+        <div class="form-group col-12">
+          <label for="type">Tip</label>
+          <input type="text" class="form-control" ngModel name="type">
+        </div>
+        <div class="form-group col-12">
+          <label for="price">Pret</label>
+          <input type="text" class="form-control" ngModel name="price">
+        </div>
+        <br>
+        <div class="form-group col-12">
+          <button [disabled]="!Form.valid" type="submit" class="btn btn-primary m-3">Save</button>
+
+          <button type="reset" class="btn btn-primary">Cancel</button>
+        </div>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
   <button (click)="onBack()" class="btn btn-primary">Back</button>
-</p>
+</div>
+
+

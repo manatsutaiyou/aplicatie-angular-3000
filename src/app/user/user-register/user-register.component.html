@@ -1,0 +1,78 @@
+<!-- Nu mai introducem validatoare aici pentru ca este un Reactive Form, validatoarele merg in component.ts -->
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          Inregistreaza-te
+        </div>
+      <div class="card-body">
+        <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+        <div class="form-group col-12">
+          <label for="name">Nume utilizator</label>
+          <input type="text" class="form-control" formControlName="userName"  required minlength="3">
+          <!-- metoda alternativa : <span *ngIf="!registrationForm.get('userName')?.valid && registrationForm.get('userName')?.touched" class="error-block"> -->
+          <span *ngIf="!userName.valid && userName.touched" class="error-block">
+            Te rog introdu un nume!
+          </span>
+        </div>
+        <div class="form-group col-12">
+          <label for="email">Email</label>
+          <input type="text" class="form-control" formControlName="email" >
+          <span *ngIf="!email.valid && email.touched" class="error-block">
+            <span *ngIf="email.hasError('required')">
+              Te rog introdu un email!
+            </span>
+            <span *ngIf="email.hasError('email')">
+              Te rog introdu un email valid!
+            </span>
+          </span>
+        </div>
+        <div class="form-group col-12">
+          <label for="parola">Parola</label>
+          <input type="password" class="form-control" formControlName="password">
+          <span *ngIf="!password.valid && password.touched" class="error-block">
+            <span *ngIf="password.hasError('required')">
+              Te rog introdu o parola!
+            </span>
+            <span *ngIf="password.hasError('minlength')">
+              Te rog introdu o parola de minimum 8 cifre!
+            </span>
+          </span>
+          <!-- <div *ngIf="registrationForm.get('password')?.errors?.['required']" class="invalid-feedback">
+            Password is required.
+          </div>
+          <div *ngIf="registrationForm.get('password')?.errors?.['minlength']" class="invalid-feedback">
+            Password must be at least 8 characters long.
+          </div> -->
+        </div>
+        <div class="form-group col-12">
+          <label for="confirmaparola">Confirma parola</label>
+          <input type="password" class="form-control" formControlName="confirm_password" >
+          <span *ngIf="registrationForm.get('confirm_password')?.touched" class="error-block">
+            <span *ngIf="registrationForm.get('confirm_password')?.errors?.['required']">
+              Te rog introdu o parola!
+            </span></span>
+          <span *ngIf="registrationForm.errors?.['notMatching'] && password.valid" class="error-block">
+              Parolele nu se potrivesc!
+            </span>
+          
+          <!-- <span *ngIf="registrationForm.errors?.['notMatching']" class="invalid-feedback">
+            Passwords do not match.
+          </span> -->
+        </div>
+        <br>
+        <div class="form-group col-12">
+          <button class="btn btn-primary m2">Save</button>
+
+          <button type="reset" class="btn btn-primary">Cancel</button>
+        </div>
+        Form Values: {{registrationForm.value | json}}
+        Form Status: {{registrationForm.valid}}
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button (click)="onBack()" class="btn btn-primary">Back</button>
+</div>

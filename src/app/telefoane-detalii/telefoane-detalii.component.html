@@ -1,4 +1,15 @@
+<!-- Detalii pt fiecare telefon in parte - de populat cu id nume tip pret si o poza - wip -->
+<div class="asezare">
 <p>
   telefoane-detalii works!
-  Id ul telefnului este {{telefonID}}
+  Id ul telefonului este {{telefonID}}
 </p>
+<br>
+<button (click)="onSelectNext()" class="btn btn-primary">Urmatoarea pagina</button>
+<br/> 
+<br/>
+<button routerLink="/telefoane-detalii/1" class="btn btn-primary"> 1 </button>
+<button routerLink="/telefoane-detalii/2" class="btn btn-primary"> 2 </button>
+<button routerLink="/telefoane-detalii/3" class="btn btn-primary"> 3 </button>
+<button [routerLink]="['/telefoane-detalii','4']" class="btn btn-primary">4</button>
+</div>

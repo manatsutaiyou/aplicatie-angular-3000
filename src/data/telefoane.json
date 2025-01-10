@@ -1,0 +1,73 @@
+[{
+    "ID":1,
+    "SellRent":1,
+    "name":"Samsung",
+    "type":"telefon",
+    "price":10000,
+    "image":"tel-1"
+  },
+  {
+    "ID":2,
+    "SellRent":1,
+    "name":"Apple",
+    "type":"iPhone",
+    "price":99999,
+    "image":"tel-2"
+  },
+  
+  {
+    "ID":3,
+    "SellRent":2,
+    "name":"Motorolla",
+    "type":"telefon cu clapeta",
+    "price":10000,
+    "image":"tel-3"
+  },
+  {
+    "ID":4,
+    "SellRent":1,
+    "name":"Google",
+    "type":"telefon smart",
+    "price":15000,
+    "image":"tel-4"
+  },
+  {
+    "ID":5,
+    "SellRent":2,
+    "name":"Apple",
+    "type":"iPhone",
+    "price":99999,
+    "image":"tel-2"
+  },
+  {
+    "ID":6,
+    "SellRent":1,
+    "name":"Motorolla",
+    "type":"telefon cu clapeta",
+    "price":10000,
+    "image":"tel-3"
+  },
+  {
+    "ID":7,
+    "SellRent":2,
+    "name":"Google",
+    "type":"telefon smart",
+    "price":15000,
+    "image":"tel-4"
+  },
+  {
+    "ID":8,
+    "SellRent":2,
+    "name":"Samsung",
+    "type":"telefon",
+    "price":10000,
+    "image":"tel-1"
+  },
+  {
+    "ID":9,
+    "SellRent":2,
+    "name":"LG",
+    "type":"telefon vechi",
+    "price":150
+  
+  }]

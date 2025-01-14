@@ -13,4 +13,5 @@ export class PropertyCardComponent {
 @Input() property : any ={
 
 }
+@Input() hideIcons: boolean | undefined;
 }

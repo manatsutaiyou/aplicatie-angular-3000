@@ -1,36 +1,149 @@
 <!-- Formular template driven pentru a adauga in lista telefoane -->
-<div class="container my-5">
-  <div class="row justify-content-center">
-    <div class="col-md-8">
-      <div class="card">
+<div class="row gx-0 mb-5">
+  <div class="col-8">
+    <div class="container my-5 ">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+        <div class="card shadow-lg">
         <div class="card-header">
-          Adauga anunt telefon!
+          <h3>Adauga anunt telefon!</h3>
         </div>
       <div class="card-body">
         <form (ngSubmit)="onSubmit()" #Form="ngForm">
-        <div class="form-group col-12">
-          <!-- numele este obligatoriu si mai amre de 3 caractere- 2 erori care se afiseaza in functie de situatie -->
-          <label for="name">Nume</label>
-          <input type="text" class="form-control" #telName="ngModel" ngModel name="name"  required minlength="3">
-          <span *ngIf="!telName.valid && telName.touched" class="error-block">
-           <span *ngIf="telName?.errors?.['required']">Numele telefonului este obligatoriu!</span> 
-           <span *ngIf="telName?.errors?.['minlength']">Numele trebuie sa aiba minimum 3 caractere!</span> 
-          </span>
-        </div>
-        <div class="form-group col-12">
-          <label for="type">Tip</label>
-          <input type="text" class="form-control" ngModel name="type">
-        </div>
-        <div class="form-group col-12">
-          <label for="price">Pret</label>
-          <input type="text" class="form-control" ngModel name="price">
-        </div>
+          <div class="tab-panel">
+            <tabset class="member-tabset" #formTabs>
+              <tab heading="Informatii de baza">
+                <br>
+              <div class="form-group col-12">
+                <p>Doresc sa</p>
+                <div class="btn-group" btnRadioGroup>
+                <label class="btn btn-outline-primary me-2" btnRadio="1" role="button" name="SellExc">
+                  Vand
+                </label>
+                <label class="btn btn-outline-primary" btnRadio="2" role="button" name="SellExc">
+                  Dau la Schimb
+                </label>
+                </div>
+              </div>
+              <div class="form-group col-12">
+                <p>Numar obiective foto</p>
+                <div class="btn-group" btnRadioGroup>
+                <label *ngFor="let nrcam of [1,2,3,4]" class="btn btn-outline-primary me-2"  [btnRadio]="nrcam" tabindex='0' role="button" name="SellExc">
+                  {{nrcam}}
+                </label>
+                </div>
+              </div>
+                <div class="form-group col-12">
+                  <!-- numele este obligatoriu si mai amre de 3 caractere- 2 erori care se afiseaza in functie de situatie -->
+                  <!-- am adaugat two way binding pt a se sincroniza previewul cu formul - ngmodel in paranteze rotunde apoi patrate-->
+                  <label for="name">Nume</label>
+                  <input type="text" class="form-control" #telName="ngModel" ngModel name="name"  required minlength="3" [(ngModel)]="telefonView.name">
+                  <span *ngIf="!telName.valid && telName.touched" class="error-block">
+                   <span *ngIf="telName?.errors?.['required']">Numele telefonului este obligatoriu!</span>
+                   <span *ngIf="telName?.errors?.['minlength']">Numele trebuie sa aiba minimum 3 caractere!</span>
+                  </span>
+                </div>
+                <div class="form-group col-12">
+                    <p>Tip</p>
+                    <div class="btn-group" btnRadioGroup name="tip" [(ngModel)]="telefonView.type">
+                    <label *ngFor="let tTypes of telefonTypes" class="btn btn-outline-primary me-2"  [btnRadio]="tTypes" tabindex='0' role="button" name="SellExc" >
+                      {{tTypes}}
+                    </label>
+                    </div>
+                  </div>
+                <div class="form-group col-12">
+                  <label for="price">Pret</label>
+                  <input type="text" class="form-control" ngModel name="price" [(ngModel)]="telefonView.price">
+                </div>
+                <div class="form-group col-12">
+                  <button  type="button" class="btn btn-primary btn-block m-3" 
+                  (click)="selectTab(1)">Urmatorul</button>
+                  <button  type="button" class="btn btn-primary btn-block m-3" 
+                  (click)="selectTab(0)">Inapoi</button>
+                </div>
+              </tab>
+              <tab heading="Starea de utilizare">
+                <div class="form-group col-12">
+                  <label>Stare</label><br/>
+                  <input type="radio" id='Nou, in ambalaj original' value='1' name="RTM">
+                  <label class="m-2">Nou, in ambalaj original</label>
+    
+                  <input type="radio" id="Utilizat" value='2' name="RTM">
+                  <label class="m-2">Utilizat</label>
+                </div>
+                <div class="form-group col-12">
+                  <label>Model complet telefon</label>
+                  <input type="text" class="form-control">
+                </div>
+  
+                <div class="form-group col-12">
+                  <label>An model</label>
+                  <input type="text"
+                  placeholder="Datepicker"
+                  class="form-control"
+                  bsDatepicker [bsConfig]="{containerClass: 'theme-green', dateInputFormat: 'YYYY'}">
+                </div>
+                
+                <div class="form-group col-12">
+                  <label>Descriere si detalii stare de utilizare</label>
+                  <textarea type="text" class="form-control" rows="6"></textarea>
+                </div>
+                <div class="form-group col-12">
+                  <button  type="button" class="btn btn-primary btn-block m-3" 
+                  (click)="selectTab(2)">Urmatorul</button>
+                  <button  type="button" class="btn btn-primary btn-block m-3" 
+                  (click)="selectTab(0)">Inapoi</button>
+                </div>
+              </tab>
+              <tab heading="Specificatii">
+                <div class="form-group col-12">
+                  <label>Procesor si placa grafica</label>
+                  <input type="text" class="form-control">
+                </div>
+  
+                <div class="form-group col-12">
+                  <label>Memorie RAM si spatiu de stocare</label>
+                  <input type="text" class="form-control">
+                </div>
+  
+                <div class="form-group col-12">
+                  <label>Display</label>
+                  <input type="text" class="form-control">
+                </div>
+                <div class="form-group col-12">
+                  <label>Capacitate baterie</label>
+                  <input type="text" class="form-control">
+                </div>
+                <div class="form-group col-12">
+                  <button  type="button" class="btn btn-primary btn-block m-3" 
+                  (click)="selectTab(3)">Urmatorul</button>
+                  <button  type="button" class="btn btn-primary btn-block m-3" 
+                  (click)="selectTab(1)">Inapoi</button>
+                </div>
+              </tab>
+              <tab heading="Fotografii">
+                <div class="form-group col-12">
+                  <div class="photo-control">
+                      <button class="mt-5" type="button">Upload</button> <br>
+                      This is under construction
+                  </div>
+                </div>
+                <div class="form-group col-12">
+                  <button  type="button" class="btn btn-primary btn-block m-3" 
+                  (click)="selectTab(2)">Inapoi</button>
+                </div>
+                <div class="form-group col-12">
+                  <button type="reset" class="btn btn-primary">Reseteaza</button>
+                  <button [disabled]="!Form.valid" type="submit" class="btn btn-primary m-3">Salveaza</button>
+                </div>
+                </tab>
+            </tabset>
+          </div>
         <br>
-        <div class="form-group col-12">
+        <!-- <div class="form-group col-12">
           <button [disabled]="!Form.valid" type="submit" class="btn btn-primary m-3">Save</button>
-
           <button type="reset" class="btn btn-primary">Cancel</button>
-        </div>
+        </div> -->
         </form>
         </div>
       </div>
@@ -38,5 +151,14 @@
   </div>
   <button (click)="onBack()" class="btn btn-primary">Back</button>
 </div>
-
-
+</div>
+<div class="col-4">
+  <div class="card-special">
+  <h3> preview-ul anuntului tau </h3>
+  <div>
+<!-- de asta imi apar propertiesurile(telefoanele) pe aceasta pagina -->
+    <app-property-card [property]="telefonView" [hideIcons]="true"></app-property-card>
+  </div>
+  </div>
+</div>
+</div>

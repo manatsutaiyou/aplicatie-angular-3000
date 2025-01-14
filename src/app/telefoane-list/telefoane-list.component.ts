@@ -32,8 +32,8 @@ export class TelefoaneListComponent implements OnInit {
     });
   }
 
-  loadTelefoane(SellRent?: number): void {
-    this.telefonieService.getAllTelefoane(SellRent).subscribe(
+  loadTelefoane(SellExc?: number): void {
+    this.telefonieService.getAllTelefoane(SellExc).subscribe(
       data => {
         this.list_telefoane = data;
       },

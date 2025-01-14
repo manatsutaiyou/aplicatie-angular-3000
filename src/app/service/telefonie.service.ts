@@ -11,13 +11,13 @@ import { map } from 'rxjs/operators';
 export class TelefonieService {
   constructor(private http: HttpClient) {}
 
-  getAllTelefoane(SellRent?: number): Observable<any[]> {
+  getAllTelefoane(SellExc?: number): Observable<any[]> {
     return this.http.get<any[]>('data/telefoane.json').pipe(
       map((data: any[]) => {
-        if (SellRent === undefined) {
+        if (SellExc === undefined) {
           return data;
         }
-        return data.filter(item => item.SellRent === SellRent);
+        return data.filter(item => item.SellExc === SellExc);
       })
     );
   }

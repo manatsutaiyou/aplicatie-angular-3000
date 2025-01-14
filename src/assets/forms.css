@@ -4,3 +4,39 @@
 .error-block{
     color: red;
 }
+
+.btn-group> label [ng-reflect-btn-radio]{
+    border-radius: 44px;
+    padding: 0 15px;
+    line-height: 30px;
+}
+.card-header> h1, .card-header > h2, .card-header> h3 {
+    color: white;
+}
+
+.card-header {
+    display: inline-block; /* Shrinks to fit the content */
+    width: auto;           /* Removes any forced width */
+    height: 42px;
+    padding: 4px 10px !important;
+    background-color: rgb(38, 189, 93) !important;}
+
+    
+.card-special> h1, .card-special > h2, .card-special> h3 {
+        color: white;
+        text-align: center;
+    }    
+
+.card-special{
+    width: fit-content; /* Adjust width to fit content dynamically */
+    max-width: 320px;
+    display: inline-block;
+    
+    box-sizing: border-box;
+    padding: 10px;
+    background-color: rgb(38, 189, 93) !important;
+    
+    
+    
+    
+}

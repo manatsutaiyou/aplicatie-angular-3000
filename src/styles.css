@@ -1,6 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("../node_modules/bootstrap/dist/css/bootstrap.min.css");
-@import 'assets/forms.css';
+@import './assets/forms.css';
+@import '../node_modules/alertifyjs/build/css/alertify.min.css';
+@import '../node_modules/alertifyjs/build/css/themes/bootstrap.min.css';
+@import './assets/tabs.css';
+
 body{
     background-color: darkseagreen;
 }
+div {
+    margin-bottom: 5px; /* Adds 20px space below every div */
+  }
+ div:last-child{
+    margin-bottom: 0;
+ }
+button{
+    margin-right: 2px;
+}
+.row {
+    margin: 0;
+  }
+  .col-8,
+  .col-4 {
+    padding: 0;
+  }
+  .container {
+    padding-left: 0;
+    padding-right: 0;
+  }

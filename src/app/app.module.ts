@@ -16,6 +16,15 @@ import { UserLoginComponent } from './user/user-login/user-login.component';
 import { UserRegisterComponent } from './user/user-register/user-register.component';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { UserServiceService } from './service/user-service.service';
+import { AlertifyService } from './service/alertify.service';
+import { AutentificareService } from './service/autentificare.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 const appRoutes: Routes= [
   {path: '', component: TelefoaneListComponent},
@@ -46,11 +55,19 @@ const appRoutes: Routes= [
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
+    BrowserAnimationsModule,
+    BsDropdownModule,
+    ButtonsModule,
+    BsDatepickerModule,
+    [TabsModule],
     // AppRoutingModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [
     TelefonieService,
+    UserServiceService,
+    AlertifyService,
+    AutentificareService,
     provideHttpClient()
   ],
   bootstrap: [AppComponent]

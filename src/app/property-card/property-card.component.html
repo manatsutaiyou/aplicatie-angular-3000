@@ -13,9 +13,19 @@
         </ul>
     </div>
         <div class="card-body p-3 center">
-            <h1>{{property.name}}</h1>
-            <h3>{{property.type}}</h3>
-            <h3>{{property.price}}</h3>
+            <h1 class="mb-lg-0">{{property.name}}  {{property.type}}</h1>
+            <h6 class="mt-2"> {{property.Anmodel}}</h6>
+            <hr class="mt-0 mb-2">
+            <h6 class="mb-0"> Pret: <span  class="font-highlight">{{property.pret}} RON</span> 
+                Procesor: <span>{{property.procesor}}</span> 
+                Spatiu stocare: <span>{{property.memorie}} GB;</span>
+                Baterie: <span>{{property.baterie}} mAh;</span> 
+                Display: <span>{{property.display}}; </span>
+                Retele: <span *ngFor="let retea of property.retele; let i = index">{{retea}}
+                            <span *ngIf="i < property.retele.length - 1">, </span>
+                        </span>
+
+            </h6>
             <span 
             *ngIf="property.SellExc === 2" 
             class="badge bg-warning text-danger">La schimb!</span>

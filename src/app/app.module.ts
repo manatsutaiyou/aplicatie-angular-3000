@@ -25,12 +25,17 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { TipuriDeReteleService } from './service/tipuri-de-retele.service';
+import { TelefonDetailResolverService } from './service/telefon-detail-resolver.service';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { NgxGalleryModule } from 'ngx-gallery'
+
 
 const appRoutes: Routes= [
   {path: '', component: TelefoaneListComponent},
-  {path: 'inchiriaza-telefon', component: TelefoaneListComponent},
+  {path: 'schimba_telefon', component: TelefoaneListComponent},
   {path: 'add-element', component: AddElementsComponent},
-  {path: 'telefoane-detalii/:ID', component: TelefoaneDetaliiComponent},
+  {path: 'telefoane-detalii/:ID', component: TelefoaneDetaliiComponent, resolve: {prp: TelefonDetailResolverService}},
   {path: 'user/register', component: UserRegisterComponent},
   {path: 'user/login', component: UserLoginComponent},
   {path: '**', component: TelefoaneListComponent}
@@ -61,13 +66,17 @@ const appRoutes: Routes= [
     BsDatepickerModule,
     [TabsModule],
     // AppRoutingModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    CarouselModule.forRoot(),
+    
   ],
   providers: [
     TelefonieService,
     UserServiceService,
     AlertifyService,
     AutentificareService,
+    TelefonDetailResolverService,
+    TipuriDeReteleService,
     provideHttpClient()
   ],
   bootstrap: [AppComponent]

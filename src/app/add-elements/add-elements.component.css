@@ -5,3 +5,7 @@
     border: 1px dashed blue;
     margin: 5px;
   }
+
+  .error-block{
+    text-emphasis-color: red;
+  }

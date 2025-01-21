@@ -1,18 +1,32 @@
+
+
 [{
     "ID":1,
     "SellExc":1,
     "name":"Samsung",
     "type":"telefon",
-    "price":10000,
-    "image":"tel-1"
+    "pret":10000,
+    "Anmodel": 2020,
+    "procesor": "Exinos",
+    "memorie": "64",
+    "baterie": 2000,
+    "display": "Amoled",
+    "image":"tel-1",
+    "retele":["LTE", "2g", "3g", "4g"]
   },
   {
     "ID":2,
     "SellExc":1,
     "name":"Apple",
     "type":"iPhone",
-    "price":99999,
-    "image":"tel-2"
+    "pret":99999,
+    "Anmodel": 2020,
+    "procesor": "Exinos",
+    "memorie": "64",
+    "baterie": 2000,
+    "display": "Retina",
+    "image":"tel-2",
+    "retele":["LTE", "3g", "4g", "5g"]
   },
   
   {
@@ -20,54 +34,96 @@
     "SellExc":2,
     "name":"Motorolla",
     "type":"telefon cu clapeta",
-    "price":10000,
-    "image":"tel-3"
+    "pret":10000,
+    "Anmodel": 2020,
+    "procesor": "Exinos",
+    "memorie": "64",
+    "baterie": 2000,
+    "display": "Retina",
+    "image":"tel-3",
+    "retele":["Edge", "4g", "5g", "5g+"]
   },
   {
     "ID":4,
     "SellExc":1,
     "name":"Google",
     "type":"telefon smart",
-    "price":15000,
-    "image":"tel-4"
+    "pret":15000,
+    "Anmodel": 2020,
+    "procesor": "Exinos",
+    "memorie": "64",
+    "baterie": 2000,
+    "display": "Retina",
+    "image":"tel-4",
+    "retele":["LTE", "3g", "4g", "5g"]
   },
   {
     "ID":5,
     "SellExc":2,
     "name":"Apple",
     "type":"iPhone",
-    "price":99999,
-    "image":"tel-2"
+    "pret":99999,
+    "Anmodel": 2020,
+    "procesor": "Exinos",
+    "memorie": "64",
+    "baterie": 2000,
+    "display": "Retina",
+    "image":"tel-2",
+    "retele":["Edge", "2g", "3g", "4g"]
   },
   {
     "ID":6,
     "SellExc":1,
     "name":"Motorolla",
     "type":"telefon cu clapeta",
-    "price":10000,
-    "image":"tel-3"
+    "pret":10000,
+    "Anmodel": 2020,
+    "procesor": "Exinos",
+    "memorie": "64",
+    "baterie": 2000,
+    "display": "Retina",
+    "image":"tel-3",
+    "retele":["LTE", "4g", "5g", "5g+"]
   },
   {
     "ID":7,
     "SellExc":2,
     "name":"Google",
     "type":"telefon smart",
-    "price":15000,
-    "image":"tel-4"
+    "pret":15000,
+    "Anmodel": 2020,
+    "procesor": "Exinos",
+    "memorie": "64",
+    "baterie": 2000,
+    "display": "Retina",
+    "image":"tel-4",
+    "retele":["Edge", "4g", "5g", "5g+"]
   },
   {
     "ID":8,
     "SellExc":2,
     "name":"Samsung",
     "type":"telefon",
-    "price":10000,
-    "image":"tel-1"
+    "pret":10000,
+    "Anmodel": 2020,
+    "procesor": "Exinos",
+    "memorie": "64",
+    "baterie": 2000,
+    "display": "Retina",
+    "image":"tel-1",
+    "retele":["LTE", "3g", "4g", "5g"]
   },
   {
     "ID":9,
     "SellExc":2,
     "name":"LG",
     "type":"telefon vechi",
-    "price":150
+    "Anmodel": 2020,
+    "procesor": "Exinos",
+    "memorie": "64",
+    "baterie": 2000,
+    "display": "Retina",
+    "pret":150,
+    "retele":["LTE", "3g", "4g", "5g"]
   
   }]

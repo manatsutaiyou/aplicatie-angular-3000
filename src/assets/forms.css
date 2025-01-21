@@ -1,42 +1,79 @@
-.ng-invalid.ng-touched{
-    border-color: red;
-}
-.error-block{
-    color: red;
+
+.container-flex {
+    display: flex;
+    justify-content: flex-start; 
+    gap: 10px;
+    align-items: flex-start; 
+    width: 100%;
 }
 
-.btn-group> label [ng-reflect-btn-radio]{
+
+.col-4, .col-10 {
+    display: flex;
+    flex-direction: column;
+    height: 100%; 
+    box-sizing: border-box; 
+}
+
+
+.card-special {
+    width: 100%; 
+    max-width: 320px; 
+    padding: 10px;
+    background-color: rgb(0, 79, 36) !important;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    margin-top: 0; 
+    display: flex;
+    flex-direction: column; 
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+  
+
+.card-header {
+    display: inline-block;
+    width: auto;
+    height: 42px;
+    padding: 4px 10px !important;
+    background-color: rgb(0, 79, 36) !important;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+
+.card-special > h1, .card-special > h2, .card-special > h3 {
+    color: white;
+    text-align: center;
+}
+
+
+.card-special .btn-group {
+    display: flex;
+    justify-content: space-between; 
+    flex-wrap: wrap;
+}
+
+
+.btn-group > label[ng-reflect-btn-radio] {
     border-radius: 44px;
     padding: 0 15px;
     line-height: 30px;
+    flex: 1 0 auto;  
+    max-width: 100%; 
+    text-align: center;
 }
-.card-header> h1, .card-header > h2, .card-header> h3 {
+
+
+.card-header > h1, .card-header > h2, .card-header > h3 {
     color: white;
 }
 
-.card-header {
-    display: inline-block; /* Shrinks to fit the content */
-    width: auto;           /* Removes any forced width */
-    height: 42px;
-    padding: 4px 10px !important;
-    background-color: rgb(38, 189, 93) !important;}
 
-    
-.card-special> h1, .card-special > h2, .card-special> h3 {
-        color: white;
-        text-align: center;
-    }    
+.col-4, .col-10 {
+    padding: 0;
+    margin: 0;
+}
 
-.card-special{
-    width: fit-content; /* Adjust width to fit content dynamically */
-    max-width: 320px;
-    display: inline-block;
-    
-    box-sizing: border-box;
-    padding: 10px;
-    background-color: rgb(38, 189, 93) !important;
-    
-    
-    
-    
+.card-title{
+    color: darkgreen;
 }

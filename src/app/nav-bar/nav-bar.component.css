@@ -1,3 +1,7 @@
+.navbar{
+    color: hsl(144, 88%, 9%) !important;
+}
+
 .container-fluid{
-    color: #141212;
+    color: hsl(144, 88%, 9%) !important;
 }

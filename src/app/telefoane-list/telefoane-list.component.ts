@@ -22,11 +22,11 @@ export class TelefoaneListComponent implements OnInit {
   ngOnInit(): void {
     this.route.url.subscribe(urlSegments => {
       const currentPath = urlSegments.map(segment => segment.path).join('/');
-      if (currentPath === 'inchiriaza-telefon') {
-        this.loadTelefoane(2); // Filter for SellRent: 2
+      if (currentPath === 'schimba_telefon') {
+        this.loadTelefoane(2);
       } else if (currentPath === 'cumpara-telefon') {
-        this.loadTelefoane(1);} // Filter for SellRent: 2 
-        else { this.loadTelefoane(); // Show all items
+        this.loadTelefoane(1);}
+        else { this.loadTelefoane(); 
       }
      
     });
@@ -35,9 +35,36 @@ export class TelefoaneListComponent implements OnInit {
   loadTelefoane(SellExc?: number): void {
     this.telefonieService.getAllTelefoane(SellExc).subscribe(
       data => {
+        // afiseaza lista telefoanelor prin telefonie.service
         this.list_telefoane = data;
-      },
-      error => console.error('Error loading telefoane:', error)
-    );
-  }
+        console.log(data);
+      }, error => {
+        console.log('httperror:');
+        console.log(error)
+      }
+    )
+    }
 }
+
+  //       const newTelefon = localStorage.getItem('New Phone');
+  
+  //       if (newTelefon !== null) {
+  //         try {
+  //           const parsedTelefon = JSON.parse(newTelefon);  
+  
+      
+  //           if (SellExc === undefined || parsedTelefon.SellExc === SellExc) {
+  //             this.list_telefoane = [parsedTelefon, ...this.list_telefoane];
+  //           }
+  //         } catch (error) {
+  //           console.error('Error parsing the new phone data from localStorage:', error);
+  //         }
+  //       } else {
+  //         console.log('No phone data found in localStorage');
+  //       }
+  //     },
+  //     error => {
+  //       console.error('Error loading telefoane:', error);
+  //     }
+  //   );
+  // }

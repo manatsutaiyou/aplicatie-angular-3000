@@ -11,17 +11,16 @@ constructor() { }
 addMultipleUsers(user: User) {
   let users = [];
 
-  // Check if 'Users' already exists in localStorage
+  // caut userul in local storage
   const existingUsers = localStorage.getItem('Users');
   
   if (existingUsers) {
-    // If it exists, parse the data into an array
+    // daca da, parse user in array
     users = JSON.parse(existingUsers);
   } else {
     users=[user];
   }
 
-  // Push the new user into the array
   users.push(user);
 
   // Save the updated array back to localStorage

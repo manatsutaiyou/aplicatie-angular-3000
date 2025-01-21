@@ -2,6 +2,15 @@
   min-height: 400px;
 }
 
+.card-body h1{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: rgb(0, 79, 36)
+}
+
+.font-highlight{
+  font-style:italic
+}
+
 .card{
   width: 300px;
   border: 1px solid #ccc;
@@ -27,11 +36,11 @@
   position: relative;
 }  
   .propImg{
-    display: block; /* Ensures the image behaves like a block element */
-    margin-left: auto; /* Center the image horizontally */
+    display: block;
+    margin-left: auto; 
     margin-right: auto;
-    max-width: 100%; /* Prevent the image from exceeding the card's width */
-    max-height: 200px; /* Optional: limit the height of the image */
+    max-width: 100%; 
+    max-height: 200px; 
     object-fit: contain;
   }
 .member-icons{

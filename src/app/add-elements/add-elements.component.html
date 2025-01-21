@@ -1,7 +1,8 @@
 <!-- Formular template driven pentru a adauga in lista telefoane -->
-<div class="row gx-0 mb-5">
-  <div class="col-8">
-    <div class="container my-5 ">
+<div class="container my-5">
+<div class="row gx-0 mb-2">
+  <div class="col-9 p-1">
+    <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-8">
         <div class="card shadow-lg">
@@ -9,21 +10,25 @@
           <h3>Adauga anunt telefon!</h3>
         </div>
       <div class="card-body">
-        <form (ngSubmit)="onSubmit()" #Form="ngForm">
+        <form (ngSubmit)="onSubmit()" [formGroup]="addTelefonForm" autocomplete="off">
           <div class="tab-panel">
             <tabset class="member-tabset" #formTabs>
-              <tab heading="Informatii de baza">
+              <tab heading="Informatii de baza"  > 
                 <br>
               <div class="form-group col-12">
                 <p>Doresc sa</p>
-                <div class="btn-group" btnRadioGroup>
+                <div class="btn-group" btnRadioGroup formControlName="SellExc">
                 <label class="btn btn-outline-primary me-2" btnRadio="1" role="button" name="SellExc">
                   Vand
                 </label>
-                <label class="btn btn-outline-primary" btnRadio="2" role="button" name="SellExc">
+                <label class="btn btn-outline-primary" btnRadio="2" role="button" name="SellExc" >
                   Dau la Schimb
                 </label>
                 </div>
+                <div class="error-block" *ngIf="SellExc.invalid && NextClicked" style="color: red">
+                  Selecteaza daca vrei sa vinzi sau sa inchiriezi
+                </div>
+                <!-- <span *ngIf="telefonView.SellExc === 2" class="badge bg-warning text-danger">La schimb!</span> -->
               </div>
               <div class="form-group col-12">
                 <p>Numar obiective foto</p>
@@ -37,29 +42,27 @@
                   <!-- numele este obligatoriu si mai amre de 3 caractere- 2 erori care se afiseaza in functie de situatie -->
                   <!-- am adaugat two way binding pt a se sincroniza previewul cu formul - ngmodel in paranteze rotunde apoi patrate-->
                   <label for="name">Nume</label>
-                  <input type="text" class="form-control" #telName="ngModel" ngModel name="name"  required minlength="3" [(ngModel)]="telefonView.name">
-                  <span *ngIf="!telName.valid && telName.touched" class="error-block">
+                  <input type="text" class="form-control" formControlName="name" [(ngModel)]="telefonView.name" required>                  <!-- <span *ngIf="!telName.valid && telName.touched" class="error-block">
                    <span *ngIf="telName?.errors?.['required']">Numele telefonului este obligatoriu!</span>
                    <span *ngIf="telName?.errors?.['minlength']">Numele trebuie sa aiba minimum 3 caractere!</span>
-                  </span>
+                  </span> -->
                 </div>
                 <div class="form-group col-12">
                     <p>Tip</p>
-                    <div class="btn-group" btnRadioGroup name="tip" [(ngModel)]="telefonView.type">
-                    <label *ngFor="let tTypes of telefonTypes" class="btn btn-outline-primary me-2"  [btnRadio]="tTypes" tabindex='0' role="button" name="SellExc" >
+                    <div class="btn-group d-flex " btnRadioGroup formControlName="type" [(ngModel)]="telefonView.type" required>
+                    <label *ngFor="let tTypes of telefonTypes" class="btn btn-outline-primary me-2"  [btnRadio]="tTypes" tabindex='0' role="button" name="types" >
                       {{tTypes}}
                     </label>
                     </div>
                   </div>
                 <div class="form-group col-12">
                   <label for="price">Pret</label>
-                  <input type="text" class="form-control" ngModel name="price" [(ngModel)]="telefonView.price">
+                  <input type="text" class="form-control" formControlName="pret" [(ngModel)]="telefonView.pret" required>
                 </div>
+                
                 <div class="form-group col-12">
                   <button  type="button" class="btn btn-primary btn-block m-3" 
-                  (click)="selectTab(1)">Urmatorul</button>
-                  <button  type="button" class="btn btn-primary btn-block m-3" 
-                  (click)="selectTab(0)">Inapoi</button>
+                  (click)="selectTab(1, BasicInfo.valid)">Urmatorul</button>
                 </div>
               </tab>
               <tab heading="Starea de utilizare">
@@ -78,10 +81,19 @@
   
                 <div class="form-group col-12">
                   <label>An model</label>
-                  <input type="text"
+                  <input type="number" class="form-control" ngModel name="Anmodel" [(ngModel)]="telefonView.Anmodel" [min]="1980"
+                  [max]="2025"
+                  (ngModelChange)="onYearChange($event)"
+                  [ngModelOptions]="{standalone:true}">
+                  
+                    <div *ngIf="isYearInvalid" class="text-danger">
+                      Introdu un numarintre 1980 si 2025.
+                  </div>
+                  <!-- <input type="text"
                   placeholder="Datepicker"
                   class="form-control"
-                  bsDatepicker [bsConfig]="{containerClass: 'theme-green', dateInputFormat: 'YYYY'}">
+                  bsDatepicker [bsConfig]="{containerClass: 'theme-green', dateInputFormat: 'YYYY'}"
+                  [(ngModel)]="telefonView.Anmodel"> -->
                 </div>
                 
                 <div class="form-group col-12">
@@ -90,33 +102,86 @@
                 </div>
                 <div class="form-group col-12">
                   <button  type="button" class="btn btn-primary btn-block m-3" 
-                  (click)="selectTab(2)">Urmatorul</button>
+                  (click)="selectTab(2, BasicInfo.valid)">Urmatorul</button>
                   <button  type="button" class="btn btn-primary btn-block m-3" 
                   (click)="selectTab(0)">Inapoi</button>
                 </div>
               </tab>
               <tab heading="Specificatii">
                 <div class="form-group col-12">
-                  <label>Procesor si placa grafica</label>
-                  <input type="text" class="form-control">
+                  <label>Procesor (si placa grafica)</label>
+                  <input type="text" class="form-control" ngModel name="procesor" [(ngModel)]="telefonView.procesor" [ngModelOptions]="{standalone:true}">
                 </div>
   
                 <div class="form-group col-12">
                   <label>Memorie RAM si spatiu de stocare</label>
-                  <input type="text" class="form-control">
+                  <input type="text" class="form-control" ngModel name="memorie" [(ngModel)]="telefonView.memorie" [ngModelOptions]="{standalone:true}">
                 </div>
   
                 <div class="form-group col-12">
                   <label>Display</label>
-                  <input type="text" class="form-control">
+                  <input type="text" class="form-control" ngModel name="display" [(ngModel)]="telefonView.display" [ngModelOptions]="{standalone:true}">
                 </div>
                 <div class="form-group col-12">
                   <label>Capacitate baterie</label>
-                  <input type="text" class="form-control">
+                  <input type="text" class="form-control" ngModel name="baterie" [(ngModel)]="telefonView.baterie" [ngModelOptions]="{standalone:true}">
+                </div>
+                <div class="form-group col-12" >
+                  <label>Tipuri de retele</label>
+                  <ul>
+                    <!-- am introdus arrayul retele types intr o sectiune -->
+                    <li *ngFor="let retea of section.reteleTypes | keyvalue; trackBy: trackByKey ">
+                    <label >
+                      {{retea.key}}
+                      <input 
+                      type="checkbox"
+                      [checked]="retea.value"
+                      (change)="onCheckboxChange($event, retea.key)"  
+                      [ngModel]="false" 
+                      
+                      [ngModelOptions]="{standalone:true}"
+                      /> 
+                    </label>
+                    </li>
+                  </ul>
+                  <!-- Varianta functionala pt section.reteletypes de tip array 
+                  <li *ngFor="let retea of section.reteleTypes; let i=index ">
+                    <label >
+                      {{retea}}
+                      <input 
+                      type="checkbox"
+                      checked="false"
+                      (change)="onCheckboxChange($event, retea)"  
+                      [ngModel]="false" 
+                      
+                      [ngModelOptions]="{standalone:true}"
+                      autocomplete="off" /> 
+                      
+                    </label>
+                    </li> -->
+
+              
+                  <!-- <ul>
+                    am introdus arrayul retele types intr o sectiune
+                    <li *ngFor="let retea of section.reteleTypes; let i=index ">
+                    <label >
+                      {{retea}}
+                      <input 
+                      type="checkbox"
+                      checked="false"
+                      (change)="onCheckboxChange($event, retea)"  
+                      [ngModel]="false" 
+                      (ngModelChange)="section.reteleTypes" 
+                      [ngModelOptions]="{standalone:true}"
+                      autocomplete="off" /> 
+                      
+                    </label>
+                    </li>
+                  </ul> -->
                 </div>
                 <div class="form-group col-12">
                   <button  type="button" class="btn btn-primary btn-block m-3" 
-                  (click)="selectTab(3)">Urmatorul</button>
+                  (click)="selectTab(3, BasicInfo.valid)">Urmatorul</button>
                   <button  type="button" class="btn btn-primary btn-block m-3" 
                   (click)="selectTab(1)">Inapoi</button>
                 </div>
@@ -134,7 +199,7 @@
                 </div>
                 <div class="form-group col-12">
                   <button type="reset" class="btn btn-primary">Reseteaza</button>
-                  <button [disabled]="!Form.valid" type="submit" class="btn btn-primary m-3">Salveaza</button>
+                  <button  type="submit" class="btn btn-primary m-3">Salveaza</button>
                 </div>
                 </tab>
             </tabset>
@@ -152,13 +217,14 @@
   <button (click)="onBack()" class="btn btn-primary">Back</button>
 </div>
 </div>
-<div class="col-4">
+<div class="col-3">
   <div class="card-special">
-  <h3> preview-ul anuntului tau </h3>
+  <h3> Preview-ul anuntului tau </h3>
   <div>
 <!-- de asta imi apar propertiesurile(telefoanele) pe aceasta pagina -->
     <app-property-card [property]="telefonView" [hideIcons]="true"></app-property-card>
-  </div>
+    
   </div>
 </div>
 </div>
+</div> 
